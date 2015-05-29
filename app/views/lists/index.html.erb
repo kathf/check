@@ -2,6 +2,7 @@
   <div class="page-header">
     <div class="pull-right">
       <%= link_to "New List", new_list_path, class: 'btn btn-default' %>
+      <%= link_to "Show tasks due this week", due_this_week_lists_path, class: 'btn btn-default btn-md' %>
     </div>
     <h1>My Lists</h1>
   </div>
@@ -39,4 +40,3 @@
     <% end %>
   </table>
 </div>
-

@@ -1,0 +1,32 @@
+
+<ol class="breadcrumb">
+  <li><%= link_to "Lists", lists_path %></li>
+  <li class="active"><%= link_to @list.name, list_path(@list) %></li>
+  <li class="active">Completed tasks</li>
+</ol>
+
+<div class="row">
+  <div class="page-header">
+    <h1><%= @list.name %>: completed </h1>
+  </div>
+</div>
+
+<div class="row">
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td></td>
+      </tr>
+    </thead>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.description %></td>
+        <td>
+          <%= link_to "Delete", list_task_path(@list, task), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-xs' %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

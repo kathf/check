@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :find_list, except: [ :index, :new, :create]
+  before_action :find_list, except: [ :index, :new, :create, :due_this_week]
 
   def index
     @lists = List.all
@@ -20,6 +20,18 @@ class ListsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def update
+    if @list.update_attributes(list_params)
+      redirect_to lists_path, notice: "List updated"
+    else
+      render :edit
+    end
+  end
+
+  def due_this_week
+    @tasks = Task.all.pending.due_within(1.week.from_now)
   end
 
   def destroy
