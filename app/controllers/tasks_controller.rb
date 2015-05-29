@@ -10,7 +10,7 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task.build_link 
+    @task.build_link unless @task.link.present?
   end
 
   def create
@@ -59,6 +59,17 @@ class TasksController < ApplicationController
     end
 
     def task_params
-      params.require(:task).permit(:description, :due_at, :priority, :completed, :complete, :category, link_attributes: [ :url ] )
+      params.require(:task).permit!
+=begin
+      (
+        :description,
+        :due_at,
+        :priority,
+        :completed,
+        :complete,
+        category_ids: [],
+        link_attributes: [:url]
+      )
+=end
     end
 end

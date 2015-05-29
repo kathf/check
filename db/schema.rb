@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 20150529012243) do
 
   create_table "links", force: :cascade do |t|
     t.integer  "task_id"
-    t.text     "url"
-    t.text     "description"
+    t.string   "url"
+    t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
