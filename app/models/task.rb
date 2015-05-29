@@ -1,9 +1,12 @@
 class Task < ActiveRecord::Base
   belongs_to :list
+
   has_one :link
+  accepts_nested_attributes_for :link
+
   has_and_belongs_to_many :category
-  has_many :users
-  has_many :users, through: :assignment
+  has_one :assignment
+  has_one :user, through: :assignment
 
   validates :description, presence: true
 

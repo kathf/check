@@ -6,6 +6,11 @@ class TasksController < ApplicationController
   def index
     @tasks = @tasks.incompleted_tasks
     @task = Task.new
+    @task.build_link
+  end
+
+  def edit
+    @task.build_link 
   end
 
   def create
@@ -54,6 +59,6 @@ class TasksController < ApplicationController
     end
 
     def task_params
-      params.require(:task).permit(:description, :due_at, :priority, :completed, :complete, :category)
+      params.require(:task).permit(:description, :due_at, :priority, :completed, :complete, :category, link_attributes: [ :url ] )
     end
 end

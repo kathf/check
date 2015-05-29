@@ -7,26 +7,39 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
+category_array = ["work","leisure","study"]
+
+category_array.each do |elem|
+  Category.create!(name: elem)
+end
+
+user_array = [
+  {username: "greg", email: "greg@email"},
+  {username: "lucy", email: "lucy@email"},
+  {username: "mark", email: "mark@email"},
+  {username: "felix", email: "felix@email"},
+  {username: "pepper", email: "pepper@email"}
+  ]
+
+user_array.each do |user|
+  User.create!(username: 'user[:username]', email: 'user[:email]')
+end
+
 list_array = {
   shopping: ['kale', 'brocoli', 'pasta', 'potatoes', 'tomatoes', 'coffee'],
   places: ["Panama Canal", "Venice", "Greek Islands"],
   errands: ["drycleaning", "clean the car"]
   }
 
-
 list_array.each_pair do |list, tasks_array|
   list1 = List.create!(name: list)
 
   tasks_array.each do |task|
     due = Time.at(Time.now.to_i + rand(604800..10032000)).to_s
-    completed = Time.at(Time.now.to_i - rand(1604800)).to_s
+    bina = rand(1)
     prior = 1 + rand(4)
-    list1.tasks.create!(description: task, due_at: due, priority: prior, completed: completed)
+
+    list1.tasks.create!(description: task, due_at: due, priority: prior)
   end
 
-end
-
-category_array = ["work", "leisure", "study"]
-category_array.each do |elem|
-  cat = Category.create!(name: elem)
 end
