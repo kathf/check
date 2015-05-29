@@ -15,7 +15,7 @@
     <div class="col-lg-12">
       <%= simple_form_for [@list, @task], html: { class: 'form-horizontal' } do |form| %>
         <%= form.input :description, placeholder: 'Add a Task' %>
-        <%= form.submit html: { class: 'btn btn-success' } %>
+        <%= form.submit html: { class: 'btn btn-success col-sm-2' } %>
       <% end %>
     </div>
 
@@ -24,6 +24,7 @@
         <tr>
           <td>Name</td>
           <td></td>
+          <td>Categories</td>
         </tr>
       </thead>
       <% @tasks.each do |task| %>
@@ -34,6 +35,13 @@
           </td>
           <td>
             <%= link_to "Complete", complete_list_task_path(@list, task), method: :post, class: 'btn btn-default btn-xs' %>
+          </td>
+          <td>
+            <% task.category.each do |cat| %>
+               <div class="label text-center <%= cycle('label-success', 'label-info', 'label-warning', 'label-danger') %>">
+              <%= cat.name  %>
+              </div>
+            <% end %>
           </td>
         </tr>
       <% end %>

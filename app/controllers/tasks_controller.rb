@@ -59,9 +59,7 @@ class TasksController < ApplicationController
     end
 
     def task_params
-      params.require(:task).permit!
-=begin
-      (
+      params.require(:task).permit(
         :description,
         :due_at,
         :priority,
@@ -70,6 +68,5 @@ class TasksController < ApplicationController
         category_ids: [],
         link_attributes: [:url]
       )
-=end
     end
 end
