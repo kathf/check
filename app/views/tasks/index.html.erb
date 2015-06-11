@@ -1,9 +1,9 @@
-<div class="container">
+<ol class="breadcrumb">
+  <li><%= link_to "Lists", lists_path %></li>
+  <li class="active"><%= @list.name %></li>
+</ol>
 
-  <ol class="breadcrumb">
-    <li><%= link_to "Lists", lists_path %></li>
-    <li class="active"><%= @list.name %></li>
-  </ol>
+<div class="container">
 
   <div class="row">
     <div class="page-header">
@@ -12,40 +12,35 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-12">
-      <%= simple_form_for [@list, @task], html: { class: 'form-horizontal' } do |form| %>
-        <%= form.input :description, placeholder: 'Add a Task' %>
-        <%= form.submit html: { class: 'btn btn-success col-sm-2' } %>
-      <% end %>
+    <div class="col-md-8 col-md-offset-2">
+      <div class="new-task-form">
+        <%= simple_form_for [@list, @task], remote: true, html: { class: 'form-inline' } do |form| %>
+          <%= form.input :description, placeholder: 'Add a Task', wrapper_html: { class: "col-sm-8" } %>
+      </div>
+      <div class="col-sm-3">
+          <%= form.submit class: "btn btn-success pull-right" %>
+        <% end %>
+      </div>
     </div>
+  </div>
 
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <td>Name</td>
-          <td></td>
-          <td>Categories</td>
-        </tr>
-      </thead>
-      <% @tasks.each do |task| %>
-        <tr>
-          <td><%= link_to task.description, edit_list_task_path(@list, task) %></td>
-          <td>
-            <%= link_to "Delete", list_task_path(@list, task), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-xs' %>
-          </td>
-          <td>
-            <%= link_to "Complete", complete_list_task_path(@list, task), method: :post, class: 'btn btn-default btn-xs' %>
-          </td>
-          <td>
-            <% task.category.each do |cat| %>
-               <div class="label text-center <%= cycle('label-success', 'label-info', 'label-warning', 'label-danger') %>">
-              <%= cat.name  %>
-              </div>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </table>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>Created at</td>
+            <td>Due at</td>
+            <td>Categories</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody id="tasks">
+          <%= render partial: 'task', collection: @tasks, as: :task %>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <div class="row">

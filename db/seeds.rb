@@ -26,9 +26,9 @@ user_array.each do |user|
 end
 
 list_array = {
-  shopping: ['kale', 'brocoli', 'pasta', 'potatoes', 'tomatoes', 'coffee'],
+  shopping: ['Kale', 'Brocoli', 'Pasta', 'Potatoes', 'Tomatoes', 'Coffee'],
   places: ["Panama Canal", "Venice", "Greek Islands"],
-  errands: ["drycleaning", "clean the car"]
+  errands: ["Drycleaning", "Clean the car"]
   }
 
 list_array.each_pair do |list, tasks_array|

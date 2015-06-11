@@ -2,6 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.control-label {
-  text-align: left;
+.new-task-form {
+  .form-control {
+    width: 100px;
+    text-align: left;
+  }
+}
+
+.form-group {
+  padding: 0;
 }

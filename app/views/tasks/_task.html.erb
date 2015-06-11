@@ -1,0 +1,16 @@
+<tr>
+  <td><%= link_to task.description, edit_list_task_path(@list, task) %></td>
+  <td> <%= task.created_at %> </td>
+  <td> <%= task.due_at %> </td>
+  <td>
+    <% task.category.each do |cat| %>
+       <div class="label text-center <%= cycle('label-success', 'label-info', 'label-warning', 'label-danger') %>">
+      <%= cat.name  %>
+      </div>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to "Delete", list_task_path(@list, task), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-xs' %>
+    <%= link_to "Complete", complete_list_task_path(@list, task), method: :post, class: 'btn btn-default btn-xs' %>
+  </td>
+</tr>

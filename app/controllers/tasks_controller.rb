@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   before_action :find_tasks, only: [ :index, :create, :completed_index, :complete_me ]
 
   def index
-    @tasks = @tasks.incompleted_tasks
+    @tasks = @tasks.incompleted_tasks.decorate
     @task = Task.new
     @task.build_link
   end
@@ -15,11 +15,11 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    if @task.valid?
+    if @task.save
       @list.tasks << @task
-      redirect_to list_tasks_url(@list), notice: 'Added Task'
+      render partial: @task
     else
-      render :index
+      render text: @task.errors.full_messages.join(", "), status: 500
     end
   end
 

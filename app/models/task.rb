@@ -8,7 +8,7 @@ class Task < ActiveRecord::Base
   has_one :assignment
   has_one :user, through: :assignment
 
-  validates :description, presence: true
+  validates :description, :due_at, presence: true
 
   scope :incompleted_tasks, -> { where(completed_at: nil) }
   scope :completed_tasks, -> { where.not(completed_at: nil ) }
@@ -31,6 +31,10 @@ class Task < ActiveRecord::Base
     self.completed_at = Time.now
     self.completed = true
     self.save!
+  end
+
+  def overdue?
+    due_at.present? && due_at < Time.now
   end
 
 end

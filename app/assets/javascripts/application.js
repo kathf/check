@@ -15,3 +15,15 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+
+
+$(document).ready(function() {
+  $('#new_task').on('ajax:success', function(e, data, status, xhr) {
+    $('#tasks').prepend(xhr.responseText);
+    $(this)[0].reset();
+  });
+
+  $('#new_task').on('ajax:error', function(e, xhr, status, error) {
+    alert(xhr.responseText);
+  });
+});
