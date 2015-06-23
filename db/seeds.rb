@@ -13,17 +13,8 @@ category_array.each do |elem|
   Category.create!(name: elem)
 end
 
-user_array = [
-  {username: "greg", email: "greg@email"},
-  {username: "lucy", email: "lucy@email"},
-  {username: "mark", email: "mark@email"},
-  {username: "felix", email: "felix@email"},
-  {username: "pepper", email: "pepper@email"}
-  ]
+margie = User.create!(first_name: "Margie", last_name: "Wilkinson", email: "margie@wilkinson.com", password: "password", password_confirmation: "password")
 
-user_array.each do |user|
-  User.create!(username: 'user[:username]', email: 'user[:email]')
-end
 
 list_array = {
   shopping: ['Kale', 'Brocoli', 'Pasta', 'Potatoes', 'Tomatoes', 'Coffee'],
@@ -31,15 +22,27 @@ list_array = {
   errands: ["Drycleaning", "Clean the car"]
   }
 
+def completed_date
+  Time.at(Time.now.to_i - rand(10032000))
+end
+
+#completed_at_enum = [nil, completed_date].cycle
+completed_at_enum = [nil, Proc.new { completed_date }].cycle
+
 list_array.each_pair do |list, tasks_array|
-  list1 = List.create!(name: list)
+  list1 = List.create!(name: list, user_id: 1)
 
   tasks_array.each do |task|
     due = Time.at(Time.now.to_i + rand(604800..10032000)).to_s
     bina = rand(1)
     prior = 1 + rand(4)
 
-    list1.tasks.create!(description: task, due_at: due, priority: prior)
+    list1.tasks.create!(
+      description: task,
+      due_at: due,
+      completed_at: completed_at_enum.next.try(:call),
+      priority: prior
+    )
   end
 
 end

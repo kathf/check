@@ -1,28 +1,66 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Exercise to create a todo/checlist web app
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Fork and Clone the TODO app "check" from here
+Create seeds for the "check" app and run
+
+Using a migration add the following columns to the Task model
+
+due_at timestamp
+priority integer
+completed_at timestamp
+
+Change your migrations in the previous exercise to set data on the newly created columns and rerun those migrations
+
+"Compact" your migrations but moving the columns created later into the original migrations.
+The Data Migration you did earlier can be placed in seeds
+run rake db:migrate:reset and then check your schema
+Check the entire process by dropping the database and running db:setup
+
+On the Rails console execute queries for the following:
+
+All TODOs created since a given date
+All TODOs created since a given date for a given list
+All incomplete TODOs for a given list
+All incomplete TODOs in a given list with priority higher than 3
+All incomplete TODOs in a given list with priority higher than 3 and due less than 1 week from now
+
+Add appropriate ordering to the queries you generated in the previous exercise
+
+Add scopes and class method scope to the Task class for the queries in the previous exercises
+
+Create a Link class that has url, description and created_at attributes
+
+Each task should have one (optional) link and link should belong to task
+(Don't worry about views/controllers for now)
+
+Create a Category model in check
+Create a has_and_belongs_to_many relationship between Task and Category
+Create some categories and assign those to some tasks
+Don't worry about the controllers and views for now.
+
+Create a categories route nested under task.
+
+List the categories for a particular task
+Create a form to add a category to a task (you can use a select box to choose a category rather than creating a new one)
+
+Create a User model in your check app
+
+Relate the user to tasks using an Assignment model and "through"
+Create some data and assign users to Tasks using the Rails console
+Don't worry about controllers or views for this exercise
+
+Update your Task form in check to include the creation of a Link
+
+Add simple form to your app and update all of your forms to use it
+
+Provide facility to assign a user to a task upon creation
+Allow the re-assignment of an existing task to a different user
+Provide a list of all users
+Provide a list of all tasks for a given user
+
+Add the ability to complete a task (completed tasks should not display by default)
+Provide a view to list all completed tasks
+Provide a view to list all tasks due in the next 7 days or that are overdue
+
+Refactor the "check" application to Use an AJAX form to create tasks

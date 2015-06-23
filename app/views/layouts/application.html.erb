@@ -8,17 +8,51 @@
 </head>
 <body>
 
-<div class="container">
-  <div class="content">
-    <% if flash[:notice] %>
-      <div class="alert alert-warning alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <%= flash[:notice] %>
+
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/"> CHECK </a>
       </div>
-    <% end %>
-    <%= yield %>
+      <div>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav navbar-text"> <%= user_greeting if user_signed_in? %> </li>
+          <li class="nav navbar-nav"> <%= link_to "Signout", destroy_user_session_path, method: :delete if user_signed_in? %> </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Begin page content -->
+  <div class="top-page-margin">
+    <div class="container">
+      <div>
+        <% if flash[:notice] %>
+          <div id="myAlert" class="alert alert-warning fade" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+        <%= yield %>
+      </div>
+    </div>
   </div>
-</div>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="text-muted"></p>
+    </div>
+  </footer>
+
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="./Sticky Footer Navbar Template for Bootstrap_files/jquery.min.js"></script>
+  <script src="./Sticky Footer Navbar Template for Bootstrap_files/bootstrap.min.js"></script>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="./Sticky Footer Navbar Template for Bootstrap_files/ie10-viewport-bug-workaround.js"></script>
 
 </body>
 </html>

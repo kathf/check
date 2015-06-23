@@ -1,12 +1,13 @@
 class ListsController < ApplicationController
   before_action :find_list, except: [ :index, :new, :create, :due_this_week]
+  before_action :find_user
 
   def index
-    @lists = List.all
+    @lists = @user.lists
   end
 
   def new
-    @list = List.new
+    @list = @user.lists.new
   end
 
   def show
@@ -14,7 +15,7 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = List.new(list_params)
+    @list = @user.lists.new(list_params)
     if @list.save
       redirect_to lists_url, notice: "Created #{@list.name}"
     else
@@ -31,7 +32,7 @@ class ListsController < ApplicationController
   end
 
   def due_this_week
-    @tasks = Task.all.pending.due_within(1.week.from_now)
+    @tasks = @user.tasks.due_within(1.week.from_now)
   end
 
   def destroy
@@ -46,5 +47,9 @@ class ListsController < ApplicationController
 
     def find_list
       @list = List.find(params[:id])
+    end
+
+    def find_user
+      @user = current_user
     end
 end

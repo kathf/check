@@ -6,7 +6,7 @@
 
 <div class="row">
   <div class="page-header">
-    <h1>Tasks due this week</h1>
+    <h3>Tasks due this week</h3>
   </div>
 </div>
 
@@ -22,12 +22,6 @@
     <% @tasks.each do |task| %>
       <tr>
         <td><%= task.description %></td>
-        <td>
-          <%= link_to "Delete", list_task_path(task.list, task), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-xs' %>
-        </td>
-        <td>
-          <%= link_to "Complete", complete_me_list_task_path(task.list, task), method: :post, class: 'btn btn-default btn-xs' %>
-        </td>
       </tr>
     <% end %>
   </table>

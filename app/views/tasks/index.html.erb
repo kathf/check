@@ -7,17 +7,20 @@
 
   <div class="row">
     <div class="page-header">
-      <h1><%= @list.name %></h1>
+      <h3><%= @list.name %></h3>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-8">
       <div class="new-task-form">
-        <%= simple_form_for [@list, @task], remote: true, html: { class: 'form-inline' } do |form| %>
-          <%= form.input :description, placeholder: 'Add a Task', wrapper_html: { class: "col-sm-8" } %>
-      </div>
-      <div class="col-sm-3">
+        <%= simple_form_for [@list, @task], html: {class: 'form-inline' }, remote: true do |form| %>
+          <%= form.input :description,
+            placeholder: 'Add a Task',
+            label: false,
+            wrapper: false,
+            input_html: { class: "input-task" } %>
+          <%= form.date_field :due_at, class: "form-control input-date" %>
           <%= form.submit class: "btn btn-success pull-right" %>
         <% end %>
       </div>
@@ -25,15 +28,14 @@
   </div>
 
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-8">
       <table class="table table-striped">
         <thead>
           <tr>
             <td>Name</td>
-            <td>Created at</td>
             <td>Due at</td>
             <td>Categories</td>
-            <td></td>
+            <td>Actions</td>
           </tr>
         </thead>
         <tbody id="tasks">

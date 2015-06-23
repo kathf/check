@@ -5,8 +5,6 @@ class Task < ActiveRecord::Base
   accepts_nested_attributes_for :link
 
   has_and_belongs_to_many :category
-  has_one :assignment
-  has_one :user, through: :assignment
 
   validates :description, :due_at, presence: true
 
@@ -29,7 +27,6 @@ class Task < ActiveRecord::Base
 
   def complete!
     self.completed_at = Time.now
-    self.completed = true
     self.save!
   end
 

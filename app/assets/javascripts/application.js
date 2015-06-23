@@ -27,3 +27,12 @@ $(document).ready(function() {
     alert(xhr.responseText);
   });
 });
+
+
+function showAlert() {
+    $("#myAlert").addClass("out");
+}
+
+window.setTimeout(function () {
+    showAlert();
+}, 2000);

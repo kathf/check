@@ -10,10 +10,9 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require bootstrap
+ *= require_tree .
  *= require_self
-
  */
 
 
@@ -23,4 +22,25 @@
 
 .border {
   border: 1px solid black;
+}
+
+.top-page-margin {
+  margin-top: 50px;
+}
+
+.navbar-brand {
+  font-size: 40px;
+  font-weight: 900;
+}
+
+.fade {
+  opacity: 1;
+  -webkit-transition: opacity 0.15s linear;
+  -moz-transition: opacity 0.15s linear;
+  -o-transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
+}
+
+.fade.out {
+  display: none;
 }
