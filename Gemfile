@@ -4,6 +4,8 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap'
 end
 
+gem 'rails_12factor', group: :production
+
 gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'draper', '~> 2.1.0'

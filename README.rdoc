@@ -1,5 +1,8 @@
-Exercise to create a todo/checlist web app
+https://blooming-eyrie-1926.herokuapp.com/
 
+----------------------------------------------------------------------------
+
+Exercise to create a todo/checlist web app
 
 Fork and Clone the TODO app "check" from here
 Create seeds for the "check" app and run
